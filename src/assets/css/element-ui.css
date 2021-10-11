@@ -1,0 +1,93 @@
+.post .el-input__inner,
+.post .el-textarea__inner {
+  border: 0 !important;
+  padding: 0 !important;
+}
+/* .post .el-input__inner {
+  padding-top: 20px!important;
+  padding-bottom: 20px!important;
+} */
+/* .post .el-textarea__inner {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: calc(100vh - 44px - 50px - 20px - 60px - 80px);
+} */
+
+
+.el-input__inner {
+  border: 0!important;
+  border-radius: 0!important;
+  border-bottom: 1px solid rgba(204, 204, 204, .6)!important;
+  padding: 0!important;
+  color: rgba(0,0,0,.8)!important;
+}
+
+.el-input__inner:hover {
+  border-color: rgba(204, 204, 204, .6)!important;
+}
+
+.el-input__inner.is-active {
+  border-color: #674f9d!important;
+}
+
+.el-input.is-active .el-input__inner {
+  border-color: #674f9d!important;
+}
+
+/* .el-input.is-active .el-input__inner, .el-input__inner:focus {
+  border-color: #674f9d!important;
+} */
+
+.el-checkbox__input.is-checked+.el-checkbox__label {
+  color: #674f9d!important;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner,.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #674f9d!important;
+  border-color: #674f9d!important;
+}
+.el-checkbox__inner:hover {
+  border-color: #674f9d!important;
+}
+.el-checkbox__input.is-focus .el-checkbox__inner {
+  border-color: #674f9d!important;
+}
+.el-checkbox__label {
+  color: rgba(0,0,0,.8)!important;
+  font-weight: 400!important;
+}
+
+.el-checkbox__label {
+  font-size: 12px!important;
+  padding-left: 6px!important;
+}
+
+.el-button {
+  padding: 13px 0!important;
+  border: 0!important;
+  background: #eee!important;
+  color: #a8a8a8!important;
+  border-radius: 3px!important;
+}
+.el-button:focus, .el-button:hover {
+  border-radius: 3px!important;
+  background: #eee!important;
+  text-align: center!important;
+  color: #a8a8a8!important;
+  outline: 0!important;
+  border: 0 !important;
+}
+.el-button:active{
+  border: 0!important;
+  outline: 0!important;
+}
+.el-button.is-active {
+  border-color: #636ee4 !important;
+  border-radius: 3px!important;
+  background: #636ee4!important;
+  color: #fff!important;
+  text-align: center!important;
+}
+
+.el-loading-mask {
+  background-color:rgba(255,255,255,.5)!important;
+}

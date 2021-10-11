@@ -1,0 +1,27 @@
+.vux-cell-box:not(:first-child):before {
+  border: 0 !important;
+}
+
+
+.vux-popup-header {
+  background: #fff!important;
+  font-size: 14px!important;
+}
+
+.scroller-indicator {
+  background-image:linear-gradient(to bottom, #eee, #eee, transparent, transparent),
+    linear-gradient(to top, #eee, #eee, transparent, transparent)!important;
+  background-position: top, bottom;
+}
+
+.vux-popup-header-right {
+  color: #674f9d !important;
+}
+
+.vux-popup-header-left {
+  color: rgba(51, 51, 51, .3) !important;
+}
+
+.scroller-item {
+  font-size: 14px !important;
+}
