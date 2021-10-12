@@ -48,22 +48,22 @@
             </div>
           </div>
           <div v-else-if="transition2" class="title_line1">
-            <div class="tran_div"  >
+            <div class="p_div"  >
               <p class="home_title Barlow">Aiv</p>
             </div>
-            <div class="tran_div"  >
+            <div class="p_div"  >
               <p class="home_title_se Barlow u-margin-top-19">NFT Virtual Idol Based on Aiv Network </p>
             </div>
-            <div class="tran_div"  >
+            <div class="p_div"  >
               <p class="home_title_se Barlow">and Belongs to Beyond Me</p>
             </div>
           </div>
           <div class="home_progress">
-            <div class="progress_w">
+            <div class="progress_w" @click="changeCarousel(0)">
               <el-progress color="rgba(255, 255, 255, 0.4)" :stroke-width="4" :percentage="homeProgressOne"
                 :show-text="false"></el-progress>
             </div>
-            <div class="progress_w">
+            <div class="progress_w" @click="changeCarousel(1)">
               <el-progress color="rgba(255, 255, 255, 0.4)" :stroke-width="4" :percentage="homeProgressTwo"
                 :show-text="false"></el-progress>
             </div>
@@ -232,6 +232,7 @@
       let myPath = '';
       let intervalID = '';
       return {
+        currentType:0,
         transition1: false,
         transition2: false,
         videoExtent: 1.2,
@@ -252,6 +253,8 @@
         homeProgressOne: 0,
         homeProgressTwo: 0,
         videoOpacity: 0,
+        videoOn:'',
+        videoEx:'',
       }
     },
     created() {
@@ -270,103 +273,121 @@
 
     },
     methods: {
-      home1Progress() {
+      changeCarousel(type){
         let _this = this;
-        var videoOn = setInterval(function() {
-          _this.videoOpacity = accAdd(_this.videoOpacity, 0.1)
-        }, 100)
-        var videoOn1 = setInterval(function() {
-          _this.videoExtent = accSub(_this.videoExtent, 0.002)
+        if(_this.currentType==type)return
+        if(_this.videoOn){
+          clearInterval(_this.videoOn)
+        }
+        if(_this.videoEx){
+          clearInterval(_this.videoEx)
+        }
+        if(type==0){
+          _this.twoTimeControl()
+        }else if(type==1){
+          _this.firstTimeControl()
+        }
+      },
+      firstTimeControl(){
+        let _this = this;
+        _this.videoExtent = 1
+        clearInterval(_this.progressTime)
+        _this.homeShowOne = false
+        _this.transition1 = true
+        _this.videoOpacity = 1
+        var videochange = setInterval(function() {
+          _this.videoOpacity = accSub(_this.videoOpacity, 0.033)
+        }, 10)
+        var videoOff = setInterval(function() {
+          _this.videoExtent = accAdd(_this.videoExtent, 0.0066)
         }, 10)
         setTimeout(function() {
-          clearInterval(videoOn)
-          clearInterval(videoOn1)
-        }, 1000)
+          _this.videoShow = false
+          clearInterval(videochange)
+          clearInterval(videoOff)
+          _this.videoOpacity = 0
+        }, 300)
+        setTimeout(function() {
+          _this.home2Progress()
+        }, 400)
+        setTimeout(function() {
+          _this.videoSrc = '../../../static/images/index/homeTwo.mp4',
+            _this.videoShow = true
+          _this.homeShowTwo = true
+          _this.homeProgressOne = 0
+          _this.videoOpacity = 0
+          _this.transition1 = false
+        }, 600)
+      },
+      twoTimeControl(){
+        let _this = this;
+        _this.videoExtent = 1
+        clearInterval(_this.progressTimeNext)
+
+        _this.homeShowTwo = false
+        _this.transition2 = true
+        _this.videoOpacity = 1
+        var videochange = setInterval(function() {
+          _this.videoOpacity = accSub(_this.videoOpacity, 0.033)
+        }, 10)
+        var videoOff = setInterval(function() {
+          _this.videoExtent = accAdd(_this.videoExtent, 0.0066)
+        }, 10)
+        setTimeout(function() {
+          _this.videoShow = false
+          clearInterval(videochange)
+          clearInterval(videoOff)
+          _this.videoOpacity = 0
+        }, 300)
+        setTimeout(function() {
+          _this.home1Progress()
+        }, 400)
+        setTimeout(function() {
+          _this.videoSrc = '../../../static/images/index/homeOne.mp4',
+            _this.videoShow = true
+          _this.homeShowOne = true
+          _this.homeProgressTwo = 0
+          _this.transition2 = false
+        }, 600)
+      },
+      home1Progress() {
+        let _this = this;
+        _this.currentType = 0
+        _this.transitionStartControl()
         _this.progressTime = setInterval(function() {
           if (_this.homeProgressOne >= 100) {
-            _this.videoExtent = 1
-            clearInterval(_this.progressTime)
-            _this.homeShowOne = false
-            _this.transition1 = true
-            _this.videoOpacity = 1
-            var videochange = setInterval(function() {
-              _this.videoOpacity = accSub(_this.videoOpacity, 0.1)
-            }, 100)
-            var videoOff = setInterval(function() {
-              _this.videoExtent = accAdd(_this.videoExtent, 0.002)
-            }, 10)
-            setTimeout(function() {
-              _this.videoShow = false
-              clearInterval(videochange)
-              clearInterval(videoOff)
-              _this.videoOpacity = 0
-            }, 1000)
-            setTimeout(function() {
-              _this.videoSrc = '../../../static/images/index/homeTwo.mp4',
-                _this.videoShow = true
-              _this.homeShowTwo = true
-              _this.homeProgressOne = 0
-              _this.videoOpacity = 0
-              _this.transition1 = false
-              _this.home2Progress()
-            }, 1200)
-
+            _this.firstTimeControl()
             return
           }
-
           _this.homeProgressOne = accAdd(_this.homeProgressOne, Number(2))
-
         }, 100)
       },
       home2Progress() {
         let _this = this;
-
-        var videoOn = setInterval(function() {
-          _this.videoOpacity = accAdd(_this.videoOpacity, 0.1)
-        }, 100)
-        var videoOn1 = setInterval(function() {
-          _this.videoExtent = accSub(_this.videoExtent, 0.002)
-        }, 10)
-        setTimeout(function() {
-          clearInterval(videoOn)
-          clearInterval(videoOn1)
-        }, 1000)
+        _this.currentType = 1
+        _this.transitionStartControl()
         _this.progressTimeNext = setInterval(function() {
-
           if (_this.homeProgressTwo >= 100) {
-            _this.videoExtent = 1
-            clearInterval(_this.progressTimeNext)
-
-            _this.homeShowTwo = false
-            _this.transition2 = true
-            _this.videoOpacity = 1
-            var videochange = setInterval(function() {
-              _this.videoOpacity = accSub(_this.videoOpacity, 0.1)
-            }, 100)
-            var videoOff = setInterval(function() {
-              _this.videoExtent = accAdd(_this.videoExtent, 0.002)
-            }, 10)
-            setTimeout(function() {
-              _this.videoShow = false
-              clearInterval(videochange)
-              clearInterval(videoOff)
-              _this.videoOpacity = 0
-            }, 1000)
-            setTimeout(function() {
-              _this.videoSrc = '../../../static/images/index/homeOne.mp4',
-                _this.videoShow = true
-              _this.homeShowOne = true
-              _this.homeProgressTwo = 0
-              _this.transition2 = false
-              _this.home1Progress()
-            }, 1200)
+            _this.twoTimeControl()
             return
           }
-
           _this.homeProgressTwo = accAdd(_this.homeProgressTwo, Number(2))
-
         }, 100)
       },
+      transitionStartControl(){
+        let _this = this;
+        _this.videoOn = setInterval(function() {
+          _this.videoOpacity = accAdd(_this.videoOpacity, 0.02)
+        }, 10)
+        _this.videoEx = setInterval(function() {
+          _this.videoExtent = accSub(_this.videoExtent, 0.004)
+        }, 10)
+        setTimeout(function() {
+          clearInterval(_this.videoOn)
+          clearInterval(_this.videoEx)
+        }, 500)
+      }
+
     },
 
   };
@@ -647,6 +668,7 @@
 
   .progress_w {
     width: 64px;
+    height: 20px;
   }
 
   .progress_w:first-of-type {
@@ -655,7 +677,7 @@
 
   .home_progress {
     position: absolute;
-    bottom: 64px;
+    bottom: 50px;
     width: 1440px;
     display: flex;
     justify-content: center;
@@ -796,7 +818,7 @@
     position: absolute;
     top: 60px;
     /* animation-name: example; */
-    animation: example 2s;
+    animation: example 0.3s;
     animation-fill-mode: forwards;
     /* animation-duration: 1s; */
     /* animation-delay:9s;
@@ -809,7 +831,7 @@
     position: absolute;
     top: -60px;
     /* animation-name: example; */
-    animation: example2 2s;
+    animation: example2 0.3s;
     animation-fill-mode: forwards;
     /* animation-duration: 1s; */
     /* animation-delay:9s;
@@ -821,7 +843,7 @@
   .title_line1 .p_div p {
     position: absolute;
     /* animation-name: example; */
-    animation: example1 2s;
+    animation: example1 0.3s;
     animation-fill-mode: forwards;
     /* animation-duration: 1s; */
     /* animation-delay:9s;
@@ -832,7 +854,7 @@
 
   .title_line1 .tran_div p {
     position: absolute;
-    animation: example3 2s;
+    animation: example3 0.3s;
     animation-fill-mode: forwards;
     margin-left: 120px;
   }
