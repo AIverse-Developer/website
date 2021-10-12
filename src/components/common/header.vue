@@ -169,7 +169,7 @@
 	}
 	.el-dropdown-menu{
 		width: 120px;
-		background: rgba(10, 25, 51, 0.7);
+		background: rgba(10, 25, 51, 0.7) !important;
 		backdrop-filter: blur(8px);
 		border-radius: 16px;
 		border: none !important;
