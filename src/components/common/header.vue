@@ -87,9 +87,6 @@
 						name: 'Home',
 					},
 					{
-						name: 'Intro'
-					},
-					{
 						name: 'Swap'
 					},
 					{
@@ -98,16 +95,15 @@
 					{
 						name: 'Outerverse'
 					},
+          {
+          	name: 'Bridge'
+          },
 					{
 						name: 'Business Plan'
 					},
 					{
 						name: 'Tech Paper',
-					},
-					{
-						name: 'About'
 					}
-
 				]
 			}
 		},
@@ -164,14 +160,14 @@
 	  border: none !important;
 	}
 	.el-dropdown-menu__item:not(.is-disabled):hover{
-	  background-color:#000;
-	  color:#666;
+	  background-color:#000 !important;
+	  color:#666 !important;
 	}
 	.el-dropdown-menu{
 		width: 120px;
-		background: rgba(10, 25, 51, 0.7) !important;
-		backdrop-filter: blur(8px);
-		border-radius: 16px;
+		background-color: rgba(10, 25, 51, 0.7) !important;
+		backdrop-filter: blur(8px) !important;
+		border-radius: 16px !important;
 		border: none !important;
 
 	}
@@ -202,6 +198,7 @@
 			height: 48px;
 			background: #2673FB;
 			border-radius: 16px;
+      font-weight: 600;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -269,11 +266,7 @@
 			height: 112px;
 			color: #FFFFFF;
 			z-index: 999;
-			background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
-			/* background-image: url(../../../static/images/index/head_bg.png); */
-			/* background-repeat: no-repeat;
-			background-size: 100%; */
-			/* padding: 0px 120px 0px 120px; */
+      background: linear-gradient(180deg, #000000 60.39%, rgba(0, 0, 0, 0) 100%);
 			position: fixed;
 			width: 100%;
 			min-width: 1440px;
